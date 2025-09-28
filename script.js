@@ -4,14 +4,14 @@ const blogs = [
     id: 1,
     title: "İlk Blog",
     summary: "Bu benim ilk blog yazımın özeti.",
-    file: "blogs/blog1.md",
+    file: "blogs/blog1.html",
     category: "Genel"
   },
   {
     id: 2,
     title: "İkinci Blog",
     summary: "Bu ikinci yazımın özeti.",
-    file: "blogs/blog2.md",
+    file: "blogs/blog2.html",
     category: "Teknoloji"
   }
 ];
