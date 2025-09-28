@@ -1,1 +1,1 @@
-bune olmuyor
+OLDUMU NEEE
