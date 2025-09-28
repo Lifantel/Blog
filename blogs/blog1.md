@@ -1,2 +1,1 @@
-# İlk Blog Yazım
 Nehaber
