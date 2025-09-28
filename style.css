@@ -1,0 +1,107 @@
+/* Genel yapı */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fa;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Başlık */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Arama kutusu */
+#search {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+#search:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 6px rgba(79, 70, 229, 0.3);
+}
+
+/* Blog kartları grid */
+#blog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Kart tasarımı */
+.blog-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Kart içeriği */
+.blog-card h2 {
+  font-size: 1.25rem;
+  margin: 0 0 10px;
+  color: #111;
+}
+
+.blog-card p {
+  color: #666;
+  margin: 0 0 15px;
+}
+
+/* Link (Devamını Oku) */
+.blog-card a {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #4f46e5;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.blog-card a:hover {
+  background: #3730a3;
+}
+
+/* Blog detay sayfası */
+#blog-detail {
+  max-width: 800px;
+  background: white;
+  padding: 30px;
+  margin: 40px auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#blog-detail h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+#blog-detail p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
