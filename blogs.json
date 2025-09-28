@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Modern Blog Tasarımı",
+    "category": "Tasarım",
+    "content": "Bu blogda modern tasarım trendlerini anlattık..."
+  },
+  {
+    "id": 2,
+    "title": "JavaScript ile Blog",
+    "category": "Yazılım",
+    "content": "JavaScript ile statik blog sitesi nasıl yapılır..."
+  }
+]
