@@ -10,5 +10,11 @@
     "title": "İkinci Deneme",
     "category": "Genel",
     "content": "yine deneme"
+  },
+  {
+    "id": 3,
+    "title": "Üçüncü Deneme",
+    "category": "Genel",
+    "content": "bu sefer oldu ama yine crhome bazında çalışıyor nedenini bilmiyorum , ve kısaltma yani ön gösterim uzunluğunda hata var heralde şimdi öğreneceğiz"
   }
 ]
