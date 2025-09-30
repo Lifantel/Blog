@@ -1,23 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Blog Sitem</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Blog Sitem</h1>
-  <input type="text" id="search" placeholder="Ara...">
-  <div id="blog-list"></div>
+  <header class="site-header">
+    <h1>Blog Sitem</h1>
+    <p class="subtitle">Modern, JSON ile yönetilen statik blog</p>
+  </header>
 
-  <script src="script.js"></script>
-</body>
+  <section class="controls">
+    <input id="search" type="search" placeholder="Ara başlıktan veya içerikten..." />
+    <select id="category">
+      <option value="">Tüm Kategoriler</option>
+    </select>
+    <label for="previewLen" class="preview-label">Önizleme uzunluğu</label>
+    <input id="previewLen" type="number" min="50" max="1000" value="120" />
+    <button id="refreshBtn" title="Manuel yenile">Yenile</button>
+  </section>
 
-  <footer>
-  <div class="social-links">
-    <a href="https://www.reddit.com/user/Lifantel" class="reddit-logo" title="Reddit"></a>
-    <a href="https://x.com/MehmetFatih_7" class="x-logo" title="X"></a>
-  </div>
-  <p>by Mehmet Fatih Gültekin</p>
+  <main id="blog-list" class="grid"></main>
+
+  <footer class="footer">
+    <small>Tek dosya ile yönetim: <code>blogs.json</code> — sadece onu güncelleyin.</small>
   </footer>
+
+  <script src="script.js" defer></script>
+</body>
 </html>
+
