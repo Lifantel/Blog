@@ -19,5 +19,12 @@
     "category": "Deneme",
     "excerpt": "örnek link denemesi",
     "content": "Bu bir <a href='https://tr.wikipedia.org/wiki/Anasayfa' target='_blank'>örnek link</a> yazısıdır."
+  },
+  {
+    "id": 4,
+    "title": "Hafıza Sarayı",
+    "category": "Psikoloji",
+    "excerpt": "Hafıza sarayı hakkında birkaç bilgi.",
+    "content": "<a href='https://en.wikipedia.org/wiki/Method_of_loci' target='_blank'>Method of loci</a> namı değer hafıza sarayı. Peki nedir bu hafıza sarayı ? Hafıza sarayı aslında asırlarca kullanılan bir teknik,antik Roma dan beridir kullanıldığı düşünülür. Hafıza sarayı temelinde görselleştirme bulunmakta. Siz öğrendiğiniz bir bilgiyi veya kelimeyi hayal gücünüz yardımı ile görselleştirirsiniz. Daha sonra bu görselleştirdiğiniz kelimeyi mekanınıza (hayali veya gerçek önemi yok) oraya yerleştirirsiniz daha sonra önceden belirlenmiş rotanızı takip ederek o bilgileri bulabilirsiniz."
   }
 ]
