@@ -18,13 +18,6 @@
     "title": "Link denemesi",
     "category": "Deneme",
     "excerpt": "örnek link denemesi",
-    "content": "Bu bir <a href='https://tr.wikipedia.org/wiki/Mors_alfabesi' target='_blank'>örnek link</a> yazısıdır."
-  },
-  {
-    "id": 4,
-    "title": "Deneme",
-    "category": "Deneme",
-    "excerpt": "örnek video denemesi",
-    "content": "burada video var: "
+    "content": "Bu bir <a href='https://tr.wikipedia.org/wiki/Anasayfa' target='_blank'>örnek link</a> yazısıdır."
   }
 ]
