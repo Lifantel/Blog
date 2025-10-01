@@ -70,7 +70,7 @@ async function init() {
   try {
     const blogs = await fetchBlogs();
 
-    // doldur kategoriler
+    // kategorileri doldur
     const cats = Array.from(new Set(blogs.map(b => b.category || ''))).filter(Boolean).sort();
     clearChildren(categoryEl);
     const defaultOpt = document.createElement('option');
@@ -92,7 +92,6 @@ async function init() {
     categoryEl.addEventListener('change', () => renderCards(blogs, searchEl.value));
     previewLenEl.addEventListener('change', () => renderCards(blogs, searchEl.value));
     refreshBtn.addEventListener('click', async () => {
-      // manuel yenile: tekrar fetch edip render et
       try {
         const newBlogs = await fetchBlogs();
         renderCards(newBlogs, searchEl.value);
