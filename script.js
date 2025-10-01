@@ -2,7 +2,6 @@
 const listEl = document.getElementById('blog-list');
 const searchEl = document.getElementById('search');
 const categoryEl = document.getElementById('category');
-const previewLenEl = document.getElementById('previewLen');
 const refreshBtn = document.getElementById('refreshBtn');
 
 async function fetchBlogs() {
@@ -12,29 +11,20 @@ async function fetchBlogs() {
   return res.json();
 }
 
-// Önizleme için: HTML etiketlerini kaldır, sadece düz metin kalsın
-function excerpt(text, len = 120) {
-  if (!text) return '';
-  const plain = text.replace(/<[^>]+>/g, ''); // HTML etiketleri sil
-  if (plain.length <= len) return plain;
-  let cut = plain.slice(0, len);
-  const lastSpace = cut.lastIndexOf(' ');
-  if (lastSpace > Math.floor(len * 0.5)) cut = cut.slice(0, lastSpace);
-  return cut.trim() + '...';
-}
-
 function clearChildren(el) {
   while (el.firstChild) el.removeChild(el.firstChild);
 }
 
 function renderCards(blogs, filter = '') {
   clearChildren(listEl);
-  const previewLen = parseInt(previewLenEl.value) || 120;
   const selectedCategory = categoryEl.value;
 
   const q = filter.trim().toLowerCase();
   const filtered = blogs.filter(b => {
-    const matchesQ = q === '' || (b.title && b.title.toLowerCase().includes(q)) || (b.content && b.content.toLowerCase().includes(q));
+    const matchesQ =
+      q === '' ||
+      (b.title && b.title.toLowerCase().includes(q)) ||
+      (b.excerpt && b.excerpt.toLowerCase().includes(q));
     const matchesCat = selectedCategory === '' || b.category === selectedCategory;
     return matchesQ && matchesCat;
   });
@@ -47,18 +37,16 @@ function renderCards(blogs, filter = '') {
   filtered.forEach(b => {
     const card = document.createElement('article');
     card.className = 'blog-card';
-    // Burada sadece excerpt kullanıyoruz, escapeHtml kaldırıldı
     card.innerHTML = `
       <h2>${escapeHtml(b.title)}</h2>
       <div class="meta">Kategori: ${escapeHtml(b.category || '')}</div>
-      <p>${excerpt(b.content || '', previewLen)}</p>
+      <p>${escapeHtml(b.excerpt || '')}</p>
       <a class="read" href="blog.html?id=${encodeURIComponent(b.id)}">Devamını Oku</a>
     `;
     listEl.appendChild(card);
   });
 }
 
-// Ana başlık ve kategori güvenliği için escapeHtml kullanıyoruz
 function escapeHtml(str) {
   if (!str) return '';
   return String(str)
@@ -73,7 +61,7 @@ async function init() {
   try {
     const blogs = await fetchBlogs();
 
-    // Kategorileri doldur
+    // kategorileri doldur
     const cats = Array.from(new Set(blogs.map(b => b.category || ''))).filter(Boolean).sort();
     clearChildren(categoryEl);
     const defaultOpt = document.createElement('option');
@@ -87,13 +75,12 @@ async function init() {
       categoryEl.appendChild(opt);
     });
 
-    // İlk render
+    // ilk render
     renderCards(blogs, '');
 
-    // Eventler
+    // eventler
     searchEl.addEventListener('input', e => renderCards(blogs, e.target.value));
     categoryEl.addEventListener('change', () => renderCards(blogs, searchEl.value));
-    previewLenEl.addEventListener('change', () => renderCards(blogs, searchEl.value));
     refreshBtn.addEventListener('click', async () => {
       try {
         const newBlogs = await fetchBlogs();
