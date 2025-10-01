@@ -12,13 +12,59 @@
   </header>
 
   <main id="blog-detail" class="detail-container">
-    <!-- İçerik blog.js ile doldurulacak -->
+    <p>Yükleniyor...</p>
   </main>
 
   <footer class="footer">
     <a href="index.html">← Geri</a>
   </footer>
 
-  <script src="blog.js" defer></script>
+  <script>
+    async function fetchBlogs() {
+      const url = 'blogs.json?v=' + Date.now();
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error('blogs.json yüklenemedi: ' + res.status);
+      return res.json();
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    async function init() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      const detailEl = document.getElementById("blog-detail");
+      const titleEl = document.getElementById("page-title");
+
+      try {
+        const blogs = await fetchBlogs();
+        const blog = blogs.find(b => String(b.id) === id);
+
+        if (!blog) {
+          detailEl.innerHTML = "<p style='color:#ef4444'>Yazı bulunamadı.</p>";
+          return;
+        }
+
+        titleEl.textContent = blog.title;
+        detailEl.innerHTML = `
+          <h1>${escapeHtml(blog.title)}</h1>
+          <div class="meta">Kategori: ${escapeHtml(blog.category || '')}</div>
+          <div class="content">${blog.content}</div>
+        `;
+      } catch (err) {
+        console.error(err);
+        detailEl.innerHTML = "<p style='color:#ef4444'>Yüklenemedi: " + err.message + "</p>";
+      }
+    }
+
+    init();
+  </script>
 </body>
 </html>
