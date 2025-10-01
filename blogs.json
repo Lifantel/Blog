@@ -19,5 +19,11 @@
     "category": "Deneme",
     "excerpt": "örnek link denemesi",
     "content": "Bu bir <a href='https://tr.wikipedia.org/wiki/Mors_alfabesi' target='_blank'>örnek link</a> yazısıdır."
+  },
+  {
+    "id": 4,
+    "title": "Deneme",
+    "category": "Deneme",
+    "content": "Burada bir video var:<br><iframe width='560' height='315' src='https://www.youtube.com/watch?v=xvFZjo5PgG0' frameborder='0' allowfullscreen></iframe>"
   }
 ]
