@@ -2,19 +2,22 @@
   {
     "id": 1,
     "title": " İlk Deneme",
-    "category": "Genel",
+    "category": "Deneme",
+    "excerpt": "İlk Deneme",
     "content": "Burası fikirlerimi paylaştığım güzel yer olması dileği ile."
   },
   {
     "id": 2,
     "title": "Hastane Travmaları",
     "category": "Psikoloji",
+    "excerpt": "Hastahane travmaları hakkında",
     "content": "Ben bir hastahaneye girdiğimde neden irkiliyorum .Bu bir tek bende mi oluyor yoksa tüm çocuklardamı. Bunun sebebini az çok tahmin edebiliyorum: tranva oluşmuş. Ayrıca bu tranva bence her yaşta devam ettiğini düşünüyorum çünkü yetişkinler de hastahaneye girdiklerinde gergin oluyorlar. Bu konuyu araştıracağım."
   },
   {
     "id": 3,
-    "title": "Mors Alfabesi",
-    "category": "Dil",
+    "title": "Link denemesi",
+    "category": "Deneme",
+    "excerpt": "örnek link denemesi",
     "content": "Bu bir <a href='https://tr.wikipedia.org/wiki/Mors_alfabesi' target='_blank'>örnek link</a> yazısıdır."
   }
 ]
