@@ -6,19 +6,16 @@ const previewLenEl = document.getElementById('previewLen');
 const refreshBtn = document.getElementById('refreshBtn');
 
 async function fetchBlogs() {
-  // cache-bypass: query string + no-store
   const url = 'blogs.json?v=' + Date.now();
   const res = await fetch(url, { cache: 'no-store' });
   if (!res.ok) throw new Error('blogs.json yüklenemedi: ' + res.status);
   return res.json();
 }
 
+// Önizleme için: HTML etiketlerini kaldır, sadece düz metin kalsın
 function excerpt(text, len = 120) {
   if (!text) return '';
-
-  // HTML etiketlerini temizle (sadece düz yazı kalsın)
-  const plain = text.replace(/<[^>]+>/g, '');
-
+  const plain = text.replace(/<[^>]+>/g, ''); // HTML etiketleri sil
   if (plain.length <= len) return plain;
   let cut = plain.slice(0, len);
   const lastSpace = cut.lastIndexOf(' ');
@@ -50,16 +47,18 @@ function renderCards(blogs, filter = '') {
   filtered.forEach(b => {
     const card = document.createElement('article');
     card.className = 'blog-card';
+    // Burada sadece excerpt kullanıyoruz, escapeHtml kaldırıldı
     card.innerHTML = `
       <h2>${escapeHtml(b.title)}</h2>
       <div class="meta">Kategori: ${escapeHtml(b.category || '')}</div>
-      <p>${escapeHtml(excerpt(b.content || '', previewLen))}</p>
+      <p>${excerpt(b.content || '', previewLen)}</p>
       <a class="read" href="blog.html?id=${encodeURIComponent(b.id)}">Devamını Oku</a>
     `;
     listEl.appendChild(card);
   });
 }
 
+// Ana başlık ve kategori güvenliği için escapeHtml kullanıyoruz
 function escapeHtml(str) {
   if (!str) return '';
   return String(str)
@@ -74,7 +73,7 @@ async function init() {
   try {
     const blogs = await fetchBlogs();
 
-    // kategorileri doldur
+    // Kategorileri doldur
     const cats = Array.from(new Set(blogs.map(b => b.category || ''))).filter(Boolean).sort();
     clearChildren(categoryEl);
     const defaultOpt = document.createElement('option');
@@ -88,10 +87,10 @@ async function init() {
       categoryEl.appendChild(opt);
     });
 
-    // ilk render
+    // İlk render
     renderCards(blogs, '');
 
-    // eventler
+    // Eventler
     searchEl.addEventListener('input', e => renderCards(blogs, e.target.value));
     categoryEl.addEventListener('change', () => renderCards(blogs, searchEl.value));
     previewLenEl.addEventListener('change', () => renderCards(blogs, searchEl.value));
