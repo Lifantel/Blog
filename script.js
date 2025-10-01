@@ -15,8 +15,12 @@ async function fetchBlogs() {
 
 function excerpt(text, len = 120) {
   if (!text) return '';
-  if (text.length <= len) return text;
-  let cut = text.slice(0, len);
+
+  // HTML etiketlerini temizle (sadece düz yazı kalsın)
+  const plain = text.replace(/<[^>]+>/g, '');
+
+  if (plain.length <= len) return plain;
+  let cut = plain.slice(0, len);
   const lastSpace = cut.lastIndexOf(' ');
   if (lastSpace > Math.floor(len * 0.5)) cut = cut.slice(0, lastSpace);
   return cut.trim() + '...';
