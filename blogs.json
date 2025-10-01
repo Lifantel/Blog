@@ -1,42 +1,12 @@
 [
   {
     "id": 1,
-    "title": "Deneme",
+    "title": " İlk Deneme",
     "category": "Genel",
-    "content": "İşe yaradımı bilmiyorum yaramamış olabilir bu blog denemesi"
+    "content": "Burası fikirlerimi paylaştığım güzel yer olması dileği ile."
   },
   {
     "id": 2,
-    "title": "İkinci Deneme",
-    "category": "Genel",
-    "content": "yine deneme"
-  },
-  {
-    "id": 3,
-    "title": "Üçüncü Deneme",
-    "category": "Genel",
-    "content": "bu sefer oldu ama yine crhome bazında çalışıyor nedenini bilmiyorum , ve kısaltma yani ön gösterim uzunluğunda hata var heralde şimdi öğreneceğiz"
-  },
-  {
-    "id": 4,
-    "title": "dört Deneme",
-    "category": "Genel",
-    "content": "bu sefer oldu ama yine crhome bazında çalışıyor nedenini bilmiyorum , ve kısaltma yani ön gösterim uzunluğunda hata var heralde şimdi öğreneceğiz"
-  },
-  {
-    "id": 5,
-    "title": "EVREKA",
-    "category": "İlk",
-    "content": "İşte bu be işte buuuuuuuuuu iyyyyyeeehhhhhh"
-  },
-  {
-    "id": 6,
-    "title": "Tema Sorunu",
-    "category": "Teknoloji",
-    "content": "google da tema siyah olmuyor"
-  },
-  {
-    "id": 7,
     "title": "Hastane Tranvaları",
     "category": "Psikoloji",
     "content": "Ben bir hastahaneye girdiğimde neden irkiliyorum .Bu bir tek bende mi oluyor yoksa tüm çocuklardamı. Bunun sebebini az çok tahmin edebiliyorum: tranva oluşmuş. Ayrıca bu tranva bence her yaşta devam ettiğini düşünüyorum çünkü yetişkinler de hastahaneye girdiklerinde gergin oluyorlar. Bu konuyu araştıracağım."
