@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Blog Sitem</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- OneSignal SDK -->
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "907ad959-b15b-4076-98c1-2a472632fbf1", // Senin App ID
+        notifyButton: {
+          enable: true // Sağ alt köşede izin butonu
+        },
+        allowLocalhostAsSecureOrigin: true
+      });
+    });
+  </script>
 </head>
 <body>
   <header class="site-header">
