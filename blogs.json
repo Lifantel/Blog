@@ -2,9 +2,9 @@
   {
     "id": 1,
     "title": " İlk Deneme",
-    "category": "Deneme",
+    "category": "Güncelleme",
     "excerpt": "İlk Deneme",
-    "author": "Deneme",
+    "author": "Güncelleme",
     "date": "2025-09-28",
     "content": "Burası fikirlerimi paylaştığım güzel yer olması dileği ile."
   },
@@ -20,9 +20,9 @@
   {
     "id": 3,
     "title": "Link denemesi",
-    "category": "Deneme",
+    "category": "Güncelleme",
     "excerpt": "örnek link denemesi",
-    "author": "Deneme",
+    "author": "Güncelleme",
     "date": "2025-09-30",
     "content": "Bu bir <a href='https://tr.wikipedia.org/wiki/Anasayfa' target='_blank'>örnek link</a> yazısıdır."
   },
@@ -79,5 +79,14 @@
     "author": "Mehmet Fatih Gültekin",
     "date": "2025-10-06",
     "content": "<a href='https://en.wikipedia.org/wiki/Indifference' target='_blank'>Kayıtsızlık</a>, bireyin çevresindeki olaylara, acılara veya adaletsizliklere duygusal ya da davranışsal tepki vermemesi durumunu ifade eden karmaşık bir psikolojik ve toplumsal olgudur. Tarih boyunca kayıtsızlık, insanlık adına işlenen birçok felaketin sessiz ortağı olmuştur. Örneğin <a href='https://en.wikipedia.org/wiki/Kristallnacht' target='_blank'>Kristal Gece</a> sırasında Yahudilere karşı gerçekleştirilen sistematik şiddet eylemlerine toplumun büyük kısmı sessiz kalmış, bu sessizlik Nazi rejiminin zulmünü büyüten en tehlikeli güçlerden biri haline gelmiştir. Benzer şekilde, günümüzde <a href='https://en.wikipedia.org/wiki/2023%E2%80%93present_Israel%E2%80%93Hamas_war' target='_blank'>Gazze’de yaşanan insani kriz</a> karşısında da dünya genelinde görülen tepkisizlik, modern çağın en belirgin kayıtsızlık örneklerinden biri olarak değerlendirilmektedir. Psikoloji alanında yapılan araştırmalar, kayıtsızlığın çoğu zaman empati yorgunluğu ve bilişsel savunma mekanizmalarından kaynaklandığını göstermektedir. İnsan beyni sürekli acıya tanık olduğunda bir tür duygusal uyuşma geliştirir; bu da bireyin olaylara karşı duyarsızlaşmasına neden olur. Ancak bu duyarsızlık bireysel bir tepki olmanın ötesine geçtiğinde toplumsal bir tehlikeye dönüşür çünkü kayıtsızlık zalimin en güçlü müttefiki haline gelir. <a href='https://www.apa.org' target='_blank'>American Psychological Association</a> verilerine göre kayıtsızlık, etik yargıların zayıflamasına, toplumsal sorumluluk bilincinin azalmasına ve uzun vadede medeniyetlerin çöküşünü hızlandırabilecek kültürel erozyona yol açabilir. Sonuç olarak kayıtsızlık tarafsızlık değildir; sessizlik bir eylemsizlik değil, bilinçli ya da bilinçsiz şekilde kötülüğe verilen bir destektir. Eğer insanlık kendi vicdanını korumak istiyorsa, önce bu sessizliğe karşı ses çıkarmayı öğrenmelidir."
+  },
+  {
+    "id": 10,
+    "title": "Tarih ve yazar eklendi",
+    "category": "Güncelleme",
+    "excerpt": "Güncellme",
+    "author": "Güncelleme",
+    "date": "2025-10-06",
+    "content": "Tarih ile sıralama yazar ile katogorileme eklenmiştir."
   }
 ]
