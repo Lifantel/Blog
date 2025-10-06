@@ -2,7 +2,11 @@
 const listEl = document.getElementById('blog-list');
 const searchEl = document.getElementById('search');
 const categoryEl = document.getElementById('category');
+const sortEl = document.getElementById('sort');
 const refreshBtn = document.getElementById('refreshBtn');
+
+let allBlogs = [];
+let activeAuthor = '';
 
 async function fetchBlogs() {
   const url = 'blogs.json?v=' + Date.now();
@@ -15,19 +19,29 @@ function clearChildren(el) {
   while (el.firstChild) el.removeChild(el.firstChild);
 }
 
+function sortBlogs(blogs) {
+  return blogs.sort((a, b) => {
+    if (sortEl.value === 'oldest') return new Date(a.date) - new Date(b.date);
+    return new Date(b.date) - new Date(a.date); // default newest
+  });
+}
+
 function renderCards(blogs, filter = '') {
   clearChildren(listEl);
   const selectedCategory = categoryEl.value;
-
   const q = filter.trim().toLowerCase();
-  const filtered = blogs.filter(b => {
+
+  let filtered = blogs.filter(b => {
     const matchesQ =
       q === '' ||
       (b.title && b.title.toLowerCase().includes(q)) ||
       (b.excerpt && b.excerpt.toLowerCase().includes(q));
     const matchesCat = selectedCategory === '' || b.category === selectedCategory;
-    return matchesQ && matchesCat;
+    const matchesAuthor = activeAuthor === '' || b.author === activeAuthor;
+    return matchesQ && matchesCat && matchesAuthor;
   });
+
+  filtered = sortBlogs(filtered);
 
   if (filtered.length === 0) {
     listEl.innerHTML = '<p style="padding:12px;color:#6b7280">Herhangi bir yazı bulunamadı.</p>';
@@ -39,11 +53,26 @@ function renderCards(blogs, filter = '') {
     card.className = 'blog-card';
     card.innerHTML = `
       <h2>${escapeHtml(b.title)}</h2>
-      <div class="meta">Kategori: ${escapeHtml(b.category || '')}</div>
+      <div class="meta">
+        <span class="author" style="cursor:pointer;color:#4f46e5;" data-author="${escapeHtml(b.author || '')}">
+          ✍️ ${escapeHtml(b.author || 'Bilinmeyen')}
+        </span> —
+        🗓️ ${escapeHtml(new Date(b.date).toLocaleDateString('tr-TR'))} |
+        Kategori: ${escapeHtml(b.category || '')}
+      </div>
       <p>${escapeHtml(b.excerpt || '')}</p>
       <a class="read" href="blog.html?id=${encodeURIComponent(b.id)}">Devamını Oku</a>
     `;
     listEl.appendChild(card);
+  });
+
+  // 👤 Yazar adına tıklayınca filtreleme
+  document.querySelectorAll('.author').forEach(el => {
+    el.addEventListener('click', e => {
+      const name = e.target.dataset.author;
+      activeAuthor = activeAuthor === name ? '' : name;
+      renderCards(allBlogs, searchEl.value);
+    });
   });
 }
 
@@ -60,8 +89,9 @@ function escapeHtml(str) {
 async function init() {
   try {
     const blogs = await fetchBlogs();
+    allBlogs = blogs;
 
-    // kategorileri doldur
+    // Kategorileri doldur
     const cats = Array.from(new Set(blogs.map(b => b.category || ''))).filter(Boolean).sort();
     clearChildren(categoryEl);
     const defaultOpt = document.createElement('option');
@@ -75,22 +105,23 @@ async function init() {
       categoryEl.appendChild(opt);
     });
 
-    // ilk render
-    renderCards(blogs, '');
+    // İlk render
+    renderCards(allBlogs, '');
 
-    // eventler
-    searchEl.addEventListener('input', e => renderCards(blogs, e.target.value));
-    categoryEl.addEventListener('change', () => renderCards(blogs, searchEl.value));
+    // Eventler
+    searchEl.addEventListener('input', e => renderCards(allBlogs, e.target.value));
+    categoryEl.addEventListener('change', () => renderCards(allBlogs, searchEl.value));
+    sortEl.addEventListener('change', () => renderCards(allBlogs, searchEl.value));
     refreshBtn.addEventListener('click', async () => {
       try {
         const newBlogs = await fetchBlogs();
-        renderCards(newBlogs, searchEl.value);
+        allBlogs = newBlogs;
+        renderCards(allBlogs, searchEl.value);
       } catch (err) {
         console.error(err);
         alert('Yenileme başarısız: ' + err.message);
       }
     });
-
   } catch (err) {
     console.error(err);
     listEl.innerHTML = `<p style="padding:12px;color:#ef4444">Hata: ${escapeHtml(err.message)}</p>`;
