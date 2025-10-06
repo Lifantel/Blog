@@ -2,6 +2,7 @@
 const listEl = document.getElementById('blog-list');
 const searchEl = document.getElementById('search');
 const categoryEl = document.getElementById('category');
+const authorEl = document.getElementById('author');
 const sortEl = document.getElementById('sort');
 const refreshBtn = document.getElementById('refreshBtn');
 
@@ -54,9 +55,7 @@ function renderCards(blogs, filter = '') {
     card.innerHTML = `
       <h2>${escapeHtml(b.title)}</h2>
       <div class="meta">
-        <span class="author" style="cursor:pointer;color:#4f46e5;" data-author="${escapeHtml(b.author || '')}">
-          ✍️ ${escapeHtml(b.author || 'Bilinmeyen')}
-        </span> —
+        ✍️ ${escapeHtml(b.author || 'Bilinmeyen')} —
         🗓️ ${escapeHtml(new Date(b.date).toLocaleDateString('tr-TR'))} |
         Kategori: ${escapeHtml(b.category || '')}
       </div>
@@ -64,15 +63,6 @@ function renderCards(blogs, filter = '') {
       <a class="read" href="blog.html?id=${encodeURIComponent(b.id)}">Devamını Oku</a>
     `;
     listEl.appendChild(card);
-  });
-
-  // 👤 Yazar adına tıklayınca filtreleme
-  document.querySelectorAll('.author').forEach(el => {
-    el.addEventListener('click', e => {
-      const name = e.target.dataset.author;
-      activeAuthor = activeAuthor === name ? '' : name;
-      renderCards(allBlogs, searchEl.value);
-    });
   });
 }
 
@@ -94,15 +84,29 @@ async function init() {
     // Kategorileri doldur
     const cats = Array.from(new Set(blogs.map(b => b.category || ''))).filter(Boolean).sort();
     clearChildren(categoryEl);
-    const defaultOpt = document.createElement('option');
-    defaultOpt.value = '';
-    defaultOpt.textContent = 'Tüm Kategoriler';
-    categoryEl.appendChild(defaultOpt);
+    const defaultCatOpt = document.createElement('option');
+    defaultCatOpt.value = '';
+    defaultCatOpt.textContent = 'Tüm Kategoriler';
+    categoryEl.appendChild(defaultCatOpt);
     cats.forEach(c => {
       const opt = document.createElement('option');
       opt.value = c;
       opt.textContent = c;
       categoryEl.appendChild(opt);
+    });
+
+    // Yazarları doldur
+    const authors = Array.from(new Set(blogs.map(b => b.author || ''))).filter(Boolean).sort();
+    clearChildren(authorEl);
+    const defaultAuthorOpt = document.createElement('option');
+    defaultAuthorOpt.value = '';
+    defaultAuthorOpt.textContent = 'Tüm Yazarlar';
+    authorEl.appendChild(defaultAuthorOpt);
+    authors.forEach(a => {
+      const opt = document.createElement('option');
+      opt.value = a;
+      opt.textContent = a;
+      authorEl.appendChild(opt);
     });
 
     // İlk render
@@ -111,6 +115,10 @@ async function init() {
     // Eventler
     searchEl.addEventListener('input', e => renderCards(allBlogs, e.target.value));
     categoryEl.addEventListener('change', () => renderCards(allBlogs, searchEl.value));
+    authorEl.addEventListener('change', () => {
+      activeAuthor = authorEl.value;
+      renderCards(allBlogs, searchEl.value);
+    });
     sortEl.addEventListener('change', () => renderCards(allBlogs, searchEl.value));
     refreshBtn.addEventListener('click', async () => {
       try {
@@ -122,6 +130,7 @@ async function init() {
         alert('Yenileme başarısız: ' + err.message);
       }
     });
+
   } catch (err) {
     console.error(err);
     listEl.innerHTML = `<p style="padding:12px;color:#ef4444">Hata: ${escapeHtml(err.message)}</p>`;
