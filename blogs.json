@@ -4,7 +4,7 @@
     "title": " İlk Deneme",
     "category": "Deneme",
     "excerpt": "İlk Deneme",
-    "author": "Murat",
+    "author": "Deneme",
     "date": "2025-09-28",
     "content": "Burası fikirlerimi paylaştığım güzel yer olması dileği ile."
   },
@@ -22,7 +22,7 @@
     "title": "Link denemesi",
     "category": "Deneme",
     "excerpt": "örnek link denemesi",
-    "author": "Mehmet Fatih Gültekin",
+    "author": "Deneme",
     "date": "2025-09-30",
     "content": "Bu bir <a href='https://tr.wikipedia.org/wiki/Anasayfa' target='_blank'>örnek link</a> yazısıdır."
   },
