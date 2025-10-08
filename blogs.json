@@ -88,5 +88,14 @@
     "author": "Güncelleme",
     "date": "2025-10-07",
     "content": "Tarih ile sıralama yazar ile katogorileme eklenmiştir."
+  },
+  {
+    "id": 11,
+    "title": "mfgultekin.com",
+    "category": "Güncelleme",
+    "excerpt": "SSL sertifikası ile birlikte domaini aldık.",
+    "author": "Güncelleme",
+    "date": "2025-10-08",
+    "content": "Domain imizi bağladık <a href='https://www.mfgultekin.com' target='_blank'>mfgultekin.com</a> adresi ile siteye ulaşılabilinecek."
   }
 ]
