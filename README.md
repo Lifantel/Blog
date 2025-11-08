@@ -49,7 +49,7 @@ git clone https://github.com/Lifantel/Blog
 cd blog-sitesi
 ```
 
-### 2. GitHub Pages aktif et
+### 2. GitHub Pages aktif et (Eğer Github kullanılacak ise...)
 - GitHub'da repo ayarlarından **Settings → Pages** sekmesine git.
 - Branch olarak `main` seç ve kaydet.
 - GitHub otomatik olarak siteyi yayınlar:  
