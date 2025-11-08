@@ -74,11 +74,12 @@ Tüm yazılar `blogs.json` dosyasından yüklenir.
 [
   {
     "id": 1,
-    "title": "İlk Yazım",
-    "date": "2025-10-10",
-    "excerpt": "Bu benim ilk blog yazımın kısa açıklaması.",
-    "content": "Burada yazının tam içeriği yer alır.",
-    "category": "Teknoloji"
+    "title": "Başlığınız",
+    "category": "Katagoriniz",
+    "excerpt": "Kısa açıklama",
+    "author": "Adınız",
+    "date": "2025-09-28 (örnek tarih)",
+    "content": "İçerek kısmı (HTML okuyabilecek şekilde)"
   }
 ]
 ```
