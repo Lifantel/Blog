@@ -43,7 +43,7 @@ Blog-main/
 
 ## ⚙️ Kurulum
 
-### 1. Depoyu klonla
+### 1. Repoyu klonla
 ```bash
 git clone https://github.com/Lifantel/Blog
 cd blog-sitesi
