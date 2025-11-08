@@ -99,29 +99,27 @@ RSS formatı, okuyucuların yeni içerikleri otomatik takip etmesini sağlar.
 
 ---
 
-## 🔧 Deploy Otomasyonu
+## 🔧 Örnek
 
-`.github/workflows/deploy.yml` dosyası, her `main` branch’e yapılan push işleminde otomatik olarak siteyi GitHub Pages’a dağıtır.
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Blog Sitem</title>
+    <link>https://mfgultekin.com/</link>
+    <description>Mehmet Fatih Gültekin</description>
+    <language>tr</language>
 
-### Örnek İş Akışı
-```yaml
-on:
-  push:
-    branches:
-      - main
+    <item>
+      <title>Debranding’in Psikolojik Boyutu – Logoların Sadeleşmesi</title>
+      <link>https://www.mfgultekin.com/blog.html?id=33</link>
+      <description>Markaların logolarını sadeleştirme eğilimi, tüketici zihninde güven, samimiyet ve erişilebilirlik duygularını güçlendiren bilinçli bir stratejidir</description>
+      <pubDate>Thu, 30 Oct 2025 12:00:00 +0300</pubDate>
+    </item>
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+ </channel>
+</rss>
 ```
 
-### Faydaları
-- Manuel yükleme gerekmez.
-- Her commit sonrası otomatik güncelleme yapılır.
 
 ---
 
