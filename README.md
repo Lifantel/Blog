@@ -94,7 +94,7 @@ Sistem otomatik olarak listeye dahil eder.
 
 `rss.xml` dosyası manuel veya script ile güncellenebilir.  
 RSS formatı, okuyucuların yeni içerikleri otomatik takip etmesini sağlar.
-Güncellemek istiyorsanız '<item>' den başlayıp '<item>' a kadar kopyalayın ve bir boşluk bırakıp yapıştırın. 
+Güncellemek istiyorsanız '<'item'>' den başlayıp '<'item'>' a kadar kopyalayın ve bir boşluk bırakıp yapıştırın. 
 
 ```
 
