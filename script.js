@@ -6,6 +6,13 @@ const authorEl = document.getElementById('author');
 const sortEl = document.getElementById('sort');
 const refreshBtn = document.getElementById('refreshBtn');
 
+// --- YAN PANEL İÇİN YENİ EKLENEN SEÇİCİLER ---
+const menuToggleBtn = document.getElementById('menu-toggle');
+const closeMenuBtn = document.getElementById('close-menu');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+// --- EKLENTİ SONU ---
+
 let allBlogs = [];
 let activeAuthor = '';
 
@@ -76,6 +83,19 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+// --- YAN PANEL İÇİN YENİ EKLENEN FONKSİYONLAR ---
+function openSidebar() {
+  if (sidebar) sidebar.classList.add('open');
+  if (overlay) overlay.classList.add('open');
+}
+
+function closeSidebar() {
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) overlay.classList.remove('open');
+}
+// --- EKLENTİ SONU ---
+
+
 async function init() {
   try {
     const blogs = await fetchBlogs();
@@ -112,7 +132,7 @@ async function init() {
     // İlk render
     renderCards(allBlogs, '');
 
-    // Eventler
+    // Eventler (Mevcut eventler)
     searchEl.addEventListener('input', e => renderCards(allBlogs, e.target.value));
     categoryEl.addEventListener('change', () => renderCards(allBlogs, searchEl.value));
     authorEl.addEventListener('change', () => {
@@ -131,6 +151,18 @@ async function init() {
       }
     });
 
+    // --- YAN PANEL İÇİN YENİ EKLENEN EVENTLER ---
+    if (menuToggleBtn) {
+      menuToggleBtn.addEventListener('click', openSidebar);
+    }
+    if (closeMenuBtn) {
+      closeMenuBtn.addEventListener('click', closeSidebar);
+    }
+    if (overlay) {
+      overlay.addEventListener('click', closeSidebar);
+    }
+    // --- EKLENTİ SONU ---
+
   } catch (err) {
     console.error(err);
     listEl.innerHTML = `<p style="padding:12px;color:#ef4444">Hata: ${escapeHtml(err.message)}</p>`;
@@ -138,4 +170,3 @@ async function init() {
 }
 
 init();
-
