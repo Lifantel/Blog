@@ -176,4 +176,4 @@ veya GitHub Issues sekmesinden bildirim yapabilirsiniz.
 ---
 
 **Hazırlayan:** Mehmet Fatih GÜLTEKİN / Fikri Efe AKAR
-**Sürüm:** 1.3.7
+**Sürüm:** 2.0.0
