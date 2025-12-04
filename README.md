@@ -1,3 +1,5 @@
+[Türkçe](README.md) | [English](README_EN.md)
+
 # 🌐 Blog Sitesi Ana Şablonu
 
 Bu proje, statik yapıda çalışan modern bir **kişisel blog** veya **içerik sitesi** şablonudur. GitHub Pages veya benzeri statik barındırma servislerinde kolayca yayınlanabilir.
