@@ -1,243 +1,325 @@
+/* ==============================
+   NOIR MODERN BLOG THEME
+   ============================== */
+
 :root{
-  --accent: #6366f1;   /* Mor-mavi vurgu */
-  --bg: #0f172a;       /* Koyu arka plan */
-  --card: #1e293b;     /* Kart rengi */
-  --muted: #94a3b8;    /* Soluk yazılar */
+  --bg: #0a0a0a;        /* Ana arka plan */
+  --card: #141414;      /* Kart yüzeyi */
+  --text: #f3f3f3;      /* Ana yazı */
+  --muted: #8b8b8b;     /* Soluk meta */
+  --accent: #dc2626;    /* Tek vurgu (Noir imzası) */
 }
 
-*{box-sizing:border-box}
+/* Reset & Base */
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background:var(--bg);
-  color:#f1f5f9; /* Açık yazı */
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
   display:flex;
   flex-direction:column;
   align-items:center;
   padding:28px;
 }
 
-/* --- .site-header kuralı GÜNCELLENDİ --- */
-.site-header{ 
-  text-align:center; 
-  margin-bottom:18px; 
-  position: relative; /* Butonu konumlandırmak için */
-  width:100%;
-  max-width:1060px; /* Diğer içerikle (controls) aynı hizada olsun */
-}
-.site-header h1{ font-size:2.2rem; margin:0; color:#e2e8f0; }
-.subtitle{ color:var(--muted); margin-top:6px; }
+/* ==============================
+   HEADER
+   ============================== */
 
-.controls{
-  display:flex;
-  gap:10px;
-  align-items:center;
+.site-header{
+  position: relative;
   width:100%;
   max-width:1060px;
+  margin-bottom:18px;
+  text-align:center;
+}
+
+.site-header h1{
+  margin:0;
+  font-size:2.2rem;
+  font-weight:600;
+}
+
+.subtitle{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:0.95rem;
+}
+
+/* Hamburger */
+.menu-btn{
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:1.8rem;
+  background:none;
+  border:none;
+  color:var(--text);
+  cursor:pointer;
+}
+
+.menu-btn:hover{
+  color:var(--accent);
+}
+
+/* ==============================
+   CONTROLS
+   ============================== */
+
+.controls{
+  width:100%;
+  max-width:1060px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
   margin-bottom:20px;
-  flex-wrap: wrap;
 }
 
-#search{
-  flex:1;
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid #334155;
-  outline:none;
-  font-size:1rem;
-  background:#0f172a;
-  color:#f1f5f9;
-}
-#search:focus{ box-shadow:0 0 8px rgba(99,102,241,0.25); border-color:var(--accent); }
-
-/* Ortak dropdown stilleri */
+#search,
 #category,
 #author,
 #sort,
 #previewLen{
-  padding:10px;
+  background:#0f0f0f;
+  color:var(--text);
+  border:1px solid #222;
   border-radius:10px;
-  border:1px solid #334155;
-  background:#1e293b;
-  color:#f1f5f9;
-  font-size:1rem;
+  padding:10px 12px;
+  font-size:0.95rem;
 }
+
+#search{
+  flex:1;
+}
+
+#search:focus,
 #category:focus,
 #author:focus,
 #sort:focus,
 #previewLen:focus{
-  box-shadow:0 0 8px rgba(99,102,241,0.25);
+  outline:none;
   border-color:var(--accent);
 }
 
 #refreshBtn{
-  padding:9px 12px;
-  background:var(--accent);
-  color:white;
-  border:none;
+  padding:10px 14px;
   border-radius:10px;
+  background:none;
+  border:1px solid var(--accent);
+  color:var(--accent);
   cursor:pointer;
 }
-#refreshBtn:hover{ opacity:0.85 }
+
+#refreshBtn:hover{
+  background:var(--accent);
+  color:#000;
+}
+
+/* ==============================
+   GRID & CARDS
+   ============================== */
 
 .grid{
   width:100%;
   max-width:1060px;
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  grid-template-columns:repeat(auto-fill, minmax(300px,1fr));
   gap:18px;
 }
 
-/* Kart */
 .blog-card{
   background:var(--card);
   padding:18px;
   border-radius:14px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.35);
-  transition:transform .18s ease, box-shadow .18s ease;
+  border:1px solid transparent;
   display:flex;
   flex-direction:column;
-  min-height:160px;
+  min-height:170px;
+  transition:border-color .2s ease;
 }
-.blog-card:hover{ transform:translateY(-6px); box-shadow:0 14px 28px rgba(0,0,0,0.45); }
 
-.blog-card h2{ margin:0 0 8px; font-size:1.1rem; color:#f8fafc; }
-.blog-card .meta{ color:var(--muted); font-size:0.9rem; margin-bottom:10px; }
-.blog-card p{ margin:0 0 14px; color:#cbd5e1; flex:1; }
+.blog-card:hover{
+  border-color:var(--accent);
+}
+
+/* Title with Noir mark */
+.blog-card h2{
+  margin:0 0 8px;
+  font-size:1.1rem;
+  font-weight:600;
+  position:relative;
+}
+
+.blog-card h2::after{
+  content:"";
+  display:block;
+  width:36px;
+  height:2px;
+  background:var(--accent);
+  margin-top:6px;
+}
+
+.blog-card .meta{
+  font-size:0.85rem;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+.blog-card p{
+  margin:0 0 14px;
+  font-size:0.95rem;
+  color:#d1d1d1;
+  flex:1;
+}
 
 .blog-card a.read{
-  display:inline-block;
-  padding:8px 12px;
-  background:var(--accent);
-  color:white;
-  border-radius:8px;
+  align-self:flex-start;
+  padding:6px 12px;
+  border:1px solid var(--accent);
+  color:var(--accent);
   text-decoration:none;
-  font-size:0.95rem;
+  border-radius:8px;
+  font-size:0.9rem;
 }
-.blog-card a.read:hover{ background:#4338ca }
 
-/* Detay sayfa */
+.blog-card a.read:hover{
+  background:var(--accent);
+  color:#000;
+}
+
+/* ==============================
+   DETAIL PAGE
+   ============================== */
+
 .detail-container{
   width:100%;
   max-width:840px;
   background:var(--card);
   padding:28px;
-  border-radius:14px;
-  box-shadow:0 8px 28px rgba(0,0,0,0.4);
+  border-radius:16px;
+  border:1px solid #1f1f1f;
   margin:22px 0;
 }
-.detail-container h1{ margin-top:0; font-size:1.8rem; color:#f8fafc; }
-.detail-container .meta{ color:var(--muted); margin-bottom:16px }
-.detail-container p{ line-height:1.7; color:#e2e8f0 }
 
-.footer{ margin-top:18px; color:var(--muted); font-size:0.9rem; }
+.detail-container h1{
+  margin-top:0;
+  font-size:1.8rem;
+}
+
+.detail-container .meta{
+  color:var(--muted);
+  margin-bottom:16px;
+}
+
+.detail-container p{
+  line-height:1.7;
+  color:#e2e2e2;
+}
+
+/* ==============================
+   SIDEBAR
+   ============================== */
+
+.sidebar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100vh;
+  width:280px;
+  background:#0f0f0f;
+  padding:20px;
+  transform:translateX(-100%);
+  transition:transform .3s ease;
+  z-index:1000;
+}
+
+.sidebar.open{
+  transform:translateX(0);
+}
+
+.sidebar h3{
+  margin-top:0;
+  font-size:1.1rem;
+}
+
+.sidebar ul{
+  list-style:none;
+  padding:0;
+}
+
+.sidebar ul li{
+  margin-bottom:12px;
+}
+
+.sidebar ul li a{
+  color:var(--text);
+  text-decoration:none;
+}
+
+.sidebar ul li a:hover{
+  color:var(--accent);
+}
+
+.close-btn{
+  position:absolute;
+  top:10px;
+  right:14px;
+  background:none;
+  border:none;
+  font-size:26px;
+  color:var(--text);
+  cursor:pointer;
+}
+
+/* ==============================
+   OVERLAY
+   ============================== */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+  z-index:999;
+}
+
+.overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+/* ==============================
+   FOOTER
+   ============================== */
+
+.footer{
+  margin-top:20px;
+  font-size:0.85rem;
+  color:var(--muted);
+}
+
+/* ==============================
+   MOBILE
+   ============================== */
 
 @media (max-width:640px){
-  .controls{ flex-direction:column; align-items:stretch; gap:8px; }
-  #previewLen,
+  .controls{
+    flex-direction:column;
+  }
+
+  #search,
   #category,
   #author,
-  #sort{ width:100% }
+  #sort,
+  #previewLen{
+    width:100%;
+  }
 }
 
-/* --- YENİ EKLENEN YAN PANEL (SIDEBAR) STİLLERİ --- */
-
-/* Hamburger Menü Butonu */
-.menu-btn {
-  position: absolute;
-  left: 0; /* Header'ın soluna yasla */
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.8rem; /* İkon boyutu */
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #f1f5f9; /* Açık yazı rengi */
-  padding: 10px; /* Tıklama alanını büyüt */
-  line-height: 1;
-  z-index: 10; /* Başlığın önünde */
-}
-.menu-btn:hover {
-  color: var(--accent); /* Temanızın vurgu rengi */
-}
-
-/* Yan Panelin Kendisi (Başlangıçta gizli) */
-.sidebar {
-  position: fixed; /* Ekranda sabit kalır */
-  top: 0;
-  left: 0;
-  height: 100vh; /* Tüm ekran yüksekliği */
-  width: 280px; /* Panel genişliği */
-  background-color: var(--card); /* TEMANIZA UYARLANDI */
-  box-shadow: 0 8px 28px rgba(0,0,0,0.4); /* TEMANIZA UYARLANDI */
-  padding: 20px;
-  z-index: 1000; /* Diğer her şeyin önünde */
-  
-  /* HAREKET VE GİZLEME */
-  transform: translateX(-100%); /* Ekranın solundan dışarı taşır */
-  transition: transform 0.3s ease-in-out; /* Yumuşak açılış/kapanış */
-}
-
-/* Yan Panel AÇIK Durumu */
-.sidebar.open {
-  transform: translateX(0); /* Ekranın içine geri getirir (görünür yapar) */
-}
-
-/* Panel İçeriği */
-.sidebar h3 {
-  margin-top: 0;
-  color: #f8fafc; /* Başlık rengi */
-}
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-.sidebar ul li {
-  margin-bottom: 10px;
-}
-.sidebar ul li a {
-  text-decoration: none;
-  color: var(--accent); /* TEMANIZA UYARLANDI */
-  font-size: 1.1em;
-}
-.sidebar ul li a:hover {
-  text-decoration: underline;
-}
-
-/* Kapatma Butonu (X) */
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #f1f5f9; /* Açık yazı rengi */
-}
-.close-btn:hover {
-  color: var(--muted);
-}
-
-
-/* Arka Plan Karartma (Overlay) */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Siyah overlay koyu temada da çalışır */
-  z-index: 999; /* Panelin arkasında, sitenin önünde */
-  
-  /* Başlangıçta gizli */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s;
-}
-
-/* Overlay AÇIK Durumu */
-.overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
