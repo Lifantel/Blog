@@ -323,3 +323,23 @@ body{
   }
 }
 
+/* Footer içindeki linkleri kırmızı yapar */
+.footer a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+/* Üzerine gelindiğinde hafif şeffaf yaparak etkileşim hissi verir */
+.footer a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* Sayfa içindeki genel metin linklerini de (varsa) kırmızı yapmak istersen: */
+main a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
