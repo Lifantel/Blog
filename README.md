@@ -31,6 +31,7 @@ Blog-main/
 ├── blog.js               # Blog detay sayfası işlevleri
 ├── favicon.png           # Site simgesi
 ├── favicon1.png          # Alternatif favicon
+├── linux.html            # Linux dağıtımlarının bulunduğu yer
 │
 ├── .github/
 │   └── workflows/
