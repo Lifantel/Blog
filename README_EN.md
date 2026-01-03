@@ -31,6 +31,7 @@ Blog-main/
 ├── blog.js               # Post detail page logic
 ├── favicon.png           # Site icon
 ├── favicon1.png          # Alternative favicon
+├── linux.html            # Where Linux distributions are located
 │
 ├── .github/
 │   └── workflows/
