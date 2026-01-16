@@ -343,3 +343,25 @@ main a {
   text-decoration: none;
 }
 
+/* Sadece Linux sayfasındaki kartları etkiler */
+.linux-distros .blog-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* İkon ve başlığı yatayda ortalar */
+  text-align: center;  /* Yazıları ortalar */
+}
+
+/* Bu sayfadaki ikonların boyutu */
+.linux-distros .distro-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  display: block;
+}
+
+/* Butonun kart içinde çok yayılmasını engellemek için (opsiyonel) */
+.linux-distros .read {
+  width: fit-content;
+}
+
