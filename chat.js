@@ -35,7 +35,7 @@ const charCounterEl = document.getElementById('char-counter');
 
 const DB_PATH = "messages";
 const COOLDOWN_TIME = 5000;
-const MAX_MSG_LENGTH = 250; // --- YENİ EKLENEN: Karakter Sınırı ---
+const MAX_MSG_LENGTH = 500; // --- YENİ EKLENEN: Karakter Sınırı ---
 
 // --- İMZA ---
 function getMySignature() {
