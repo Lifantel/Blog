@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sohbet - Blog Sitem</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png" type="image/png">
+  
+  <style>
+    /* NOIR TEMA UYUMU */
+    
+    .chat-wrapper {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Input Alanı (Controls class'ına benzer stil) */
+    .chat-input-area {
+      background: var(--card); /* #141414 */
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    
+    .chat-input-area:hover {
+      border-color: #222;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* style.css'deki input stilleriyle aynı */
+    #chat-username, #chat-text {
+      background: #0f0f0f;
+      color: var(--text);
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      width: 100%;
+    }
+
+    #chat-username:focus, #chat-text:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    
+    #chat-text {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Buton (Refresh butonuna benzettik) */
+    #chat-btn {
+      padding: 10px 24px;
+      border-radius: 10px;
+      background: none;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    #chat-btn:hover:not(:disabled) {
+      background: var(--accent);
+      color: #000;
+    }
+
+    /* Spam cezası sırasındaki buton hali */
+    .disabled-btn {
+      opacity: 0.5;
+      cursor: not-allowed !important;
+      border-color: #444 !important;
+      color: #666 !important;
+      background: transparent !important;
+    }
+
+    /* Mesaj Listesi */
+    #messages-list {
+      display: flex;
+      flex-direction: column; /* Artık normal sıralama çünkü JS'de prepend yapıyoruz */
+      gap: 16px;
+    }
+
+    /* Mesaj Kartları (.blog-card stiline benzettik) */
+    .msg-card {
+      background: var(--card);
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      animation: slideIn 0.3s ease;
+      position: relative;
+    }
+    
+    .msg-card:hover {
+      border-color: #222; /* Hafif çerçeve belirginleşmesi */
+    }
+
+    /* Kartın soluna ince çizgi (Noir vurgusu) */
+    .msg-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 16px;
+      bottom: 16px;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .msg-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding-left: 10px; /* Çizgi payı */
+    }
+
+    .msg-author {
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .msg-time {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .msg-text {
+      color: #d1d1d1;
+      line-height: 1.5;
+      margin: 0;
+      padding-left: 10px; /* Çizgi payı */
+      word-wrap: break-word;
+    }
+
+    #spam-warning {
+      color: var(--accent);
+      font-size: 0.9rem;
+      display: none;
+      margin-right: auto; /* Yazıyı sola, butonu sağa iter */
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <aside id="sidebar" class="sidebar">
+    <nav>
+      <h3>Menü</h3>
+      <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="linux.html">Linux</a></li>
+        <li><a href="chat.html" style="color: var(--accent);">💬 Sohbet</a></li>
+        <li><a href="https://x.com/MehmetFatih_7" target="_blank">Twitter</a></li>
+        <li><a href="https://github.com/Lifantel" target="_blank">GitHub</a></li>
+      </ul>
+      <button id="close-menu" class="close-btn">&times;</button>
+    </nav>
+  </aside>
+
+  <div id="overlay" class="overlay"></div>
+
+  <header class="site-header">
+    <button id="menu-toggle" class="menu-btn">&#9776;</button>
+    <h1>Sohbet Odası</h1>
+    <p class="subtitle">Topluluk ile iletişime geç</p>
+  </header>
+
+  <main class="chat-wrapper">
+    
+    <div class="chat-input-area">
+      <div class="form-row">
+        <input type="text" id="chat-username" placeholder="Takma Adınız" maxlength="20" />
+      </div>
+      <div class="form-row">
+        <textarea id="chat-text" rows="2" placeholder="Mesajınızı buraya yazın..."></textarea>
+      </div>
+      
+      <div style="display:flex; justify-content: flex-end; align-items: center; gap: 10px;">
+        <span id="spam-warning">⏳ Lütfen 5 sn bekleyin...</span>
+        <button id="chat-btn">GÖNDER</button>
+      </div>
+    </div>
+
+    <div id="messages-list">
+      </div>
+
+  </main>
+
+  <footer class="footer">
+    <a href="index.html">© 2025 Blog Sitem</a>
+  </footer>
+
+  <script type="module" src="chat.js"></script>
+  
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeMenu = document.getElementById('close-menu');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    function toggleMenu() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    if(menuToggle) menuToggle.addEventListener('click', toggleMenu);
+    if(closeMenu) closeMenu.addEventListener('click', toggleMenu);
+    if(overlay) overlay.addEventListener('click', toggleMenu);
+  </script>
+</body>
+</html>
