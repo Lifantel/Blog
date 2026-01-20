@@ -13,7 +13,8 @@ Bu proje, statik yapıda çalışan modern bir **kişisel blog** veya **içerik 
 - **RSS desteği** (`rss.xml`)
 - **GitHub Actions ile otomatik deploy**
 - **Özel domain (CNAME) desteği**
-- Mobil uyumlu ve hızlı yükleme süreleri
+- **Mobil uyumlu ve hızlı yükleme süreleri**
+- **Sohbet odasında topluluk fikirleri**
 
 ---
 
@@ -32,6 +33,8 @@ Blog-main/
 ├── favicon.png           # Site simgesi
 ├── favicon1.png          # Alternatif favicon
 ├── linux.html            # Linux dağıtımlarının bulunduğu yer
+├── chat.html             # Sohbet Odası
+├── chat.js               # Sohbet Odasının Motoru
 │
 ├── .github/
 │   └── workflows/
