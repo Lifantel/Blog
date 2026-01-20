@@ -13,7 +13,8 @@ This project is a modern **personal blog** or **content website** template built
 - **RSS support** (`rss.xml`)
 - **Automatic deployment with GitHub Actions**
 - **Custom domain (CNAME) support**
-- Mobile-friendly and fast loading performance
+- **Mobile-friendly and fast loading performance**
+- **Community ideas in chat room**
 
 ---
 
@@ -32,6 +33,8 @@ Blog-main/
 ├── favicon.png           # Site icon
 ├── favicon1.png          # Alternative favicon
 ├── linux.html            # Where Linux distributions are located
+├── chat.html             # Chat Room
+├── chat.js               # Chat Room Engine
 │
 ├── .github/
 │   └── workflows/
@@ -176,4 +179,4 @@ Or open an Issue on GitHub.
 ---
 
 **Authors:** Mehmet Fatih GÜLTEKİN / Fikri Efe AKAR  
-**Version:** 2.0.0
+**Version:** 3.0.0
