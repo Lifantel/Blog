@@ -20,7 +20,7 @@
     }
 
     .chat-input-area {
-      background: var(--card); /* #141414 varsayımı */
+      background: #141414; /* var(--card) yerine doğrudan renk veya değişkeninizi kullanabilirsiniz */
       padding: 20px;
       border-radius: 14px;
       border: 1px solid transparent;
@@ -39,7 +39,7 @@
 
     #chat-username, #chat-text {
       background: #0f0f0f;
-      color: var(--text); /* var(--text) tanımlı olmalı, yoksa #fff */
+      color: #fff; /* var(--text) varsayımı */
       border: 1px solid #222;
       border-radius: 10px;
       padding: 12px;
@@ -89,7 +89,7 @@
     }
 
     .msg-card {
-      background: var(--card);
+      background: #141414;
       padding: 16px;
       border-radius: 14px;
       border: 1px solid transparent;
@@ -115,18 +115,17 @@
     .msg-header {
       display: flex;
       justify-content: space-between;
-      align-items: center; /* Butonları hizalamak için */
+      align-items: center; 
       margin-bottom: 8px;
       padding-left: 10px; 
     }
 
     .msg-author {
-      color: var(--text);
+      color: #fff;
       font-weight: 700;
       font-size: 0.95rem;
     }
 
-    /* YENİ: İmza Stili */
     .msg-signature {
       font-size: 0.75rem;
       color: #666;
@@ -140,12 +139,11 @@
 
     .msg-time {
       font-size: 0.8rem;
-      color: var(--muted);
-      margin-left: auto; /* Sağa iter */
+      color: #888;
+      margin-left: auto; 
       margin-right: 10px;
     }
 
-    /* YENİ: Silme Butonu */
     .delete-btn {
       background: #3a1111;
       color: #ff4d4d;
@@ -154,7 +152,7 @@
       padding: 2px 8px;
       font-size: 0.75rem;
       cursor: pointer;
-      display: none; /* Varsayılan gizli */
+      display: none; 
     }
     
     .delete-btn:hover {
@@ -177,12 +175,20 @@
       margin-right: auto;
     }
 
+    /* YENİ: Karakter Sayacı Stili */
+    .char-counter-wrapper {
+      font-size: 0.75rem;
+      color: #666;
+      text-align: right;
+      margin-top: -8px;
+      margin-bottom: 10px;
+    }
+
     @keyframes slideIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Footer Admin Link */
     .admin-login-link {
       font-size: 0.7rem;
       color: #333;
@@ -226,7 +232,11 @@
         <input type="text" id="chat-username" placeholder="Takma Adınız" maxlength="20" />
       </div>
       <div class="form-row">
-        <textarea id="chat-text" rows="2" placeholder="Mesajınızı buraya yazın..."></textarea>
+        <textarea id="chat-text" rows="2" placeholder="Mesajınızı buraya yazın..." maxlength="250"></textarea>
+      </div>
+      
+      <div class="char-counter-wrapper">
+        <span id="char-counter">0 / 250</span>
       </div>
       
       <div style="display:flex; justify-content: flex-end; align-items: center; gap: 10px;">

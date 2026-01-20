@@ -29,8 +29,13 @@ const textEl = document.getElementById('chat-text');
 const sendBtn = document.getElementById('chat-btn');
 const spamWarning = document.getElementById('spam-warning');
 
+// --- YENİ EKLENEN: Sayaç Elementi ---
+// HTML'de bu ID ile bir element yoksa kod hata vermesin diye kontrol ediyoruz
+const charCounterEl = document.getElementById('char-counter'); 
+
 const DB_PATH = "messages";
 const COOLDOWN_TIME = 5000;
+const MAX_MSG_LENGTH = 250; // --- YENİ EKLENEN: Karakter Sınırı ---
 
 // --- İMZA ---
 function getMySignature() {
@@ -115,6 +120,12 @@ function sendMessage() {
     return;
   }
 
+  // --- YENİ EKLENEN: Karakter Sınırı Kontrolü ---
+  if (text.length > MAX_MSG_LENGTH) {
+    alert(`Mesajınız çok uzun! Lütfen en fazla ${MAX_MSG_LENGTH} karakter kullanın.`);
+    return;
+  }
+
   if (!checkSpam()) {
     updateCooldownUI();
     return;
@@ -128,9 +139,32 @@ function sendMessage() {
     timestamp: serverTimestamp()
   }).then(() => {
     textEl.value = "";
+    updateCharCounter(); // Gönderdikten sonra sayacı sıfırla
     localStorage.setItem('lastSentMessageTime', Date.now());
     updateCooldownUI();
   });
+}
+
+// --- YENİ EKLENEN: Karakter Sayacı Fonksiyonu ---
+function updateCharCounter() {
+  const currentLen = textEl.value.length;
+  
+  // Eğer sınır aşılmışsa metni kırp (Opsiyonel: Kırpmak istemezsen burayı sil)
+  if (currentLen > MAX_MSG_LENGTH) {
+    textEl.value = textEl.value.substring(0, MAX_MSG_LENGTH);
+  }
+  
+  // UI Güncelleme
+  if (charCounterEl) {
+    charCounterEl.textContent = `${textEl.value.length} / ${MAX_MSG_LENGTH}`;
+    
+    // Sınıra yaklaştıysa rengi değiştir (Görsel İpucu)
+    if (textEl.value.length >= MAX_MSG_LENGTH) {
+        charCounterEl.style.color = "red";
+    } else {
+        charCounterEl.style.color = "#888";
+    }
+  }
 }
 
 sendBtn.addEventListener('click', sendMessage);
@@ -141,9 +175,13 @@ textEl.addEventListener('keydown', e => {
   }
 });
 
+// --- YENİ EKLENEN: Yazarken Sayacı Güncelle ---
+textEl.addEventListener('input', updateCharCounter);
+
 document.addEventListener('DOMContentLoaded', () => {
   listenMessages();
   updateCooldownUI();
+  updateCharCounter(); // Başlangıçta sayacı ayarla
 
   const saved = localStorage.getItem('chatUsername');
   if (saved) usernameEl.value = saved;
