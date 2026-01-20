@@ -1,18 +1,15 @@
-// chat.js
-
-// Firebase kütüphanelerini CDN üzerinden çekiyoruz
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { 
-  getDatabase, 
-  ref, 
-  push, 
-  onChildAdded, 
-  query, 
-  limitToLast, 
-  serverTimestamp 
+import {
+  getDatabase,
+  ref,
+  push,
+  set,
+  onChildAdded,
+  query,
+  limitToLast,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-// --- SENİN MEVCUT CONFIG AYARLARIN BURADA KALSIN ---
 const firebaseConfig = {
   apiKey: "AIzaSyBnBF0q_61MYjQZGRRGhXWzXO51o5c3NFs",
   authDomain: "blogsitem-1d304.firebaseapp.com",
@@ -20,14 +17,12 @@ const firebaseConfig = {
   projectId: "blogsitem-1d304",
   storageBucket: "blogsitem-1d304.firebasestorage.app",
   messagingSenderId: "967539925830",
-  appId: "1:967539925830:web:b7318a715fc3085d643b47",
-  measurementId: "G-2QL6VBEC2D"
+  appId: "1:967539925830:web:b7318a715fc3085d643b47"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// DOM Elementleri
 const msgListEl = document.getElementById('messages-list');
 const usernameEl = document.getElementById('chat-username');
 const textEl = document.getElementById('chat-text');
@@ -35,86 +30,88 @@ const sendBtn = document.getElementById('chat-btn');
 const spamWarning = document.getElementById('spam-warning');
 
 const DB_PATH = "messages";
-const COOLDOWN_TIME = 5000; 
+const COOLDOWN_TIME = 5000;
 
-// --- SPAM KORUMASI ---
+// --- İMZA ---
+function getMySignature() {
+  let sig = localStorage.getItem('userSignature');
+  if (!sig) {
+    sig = '#' + Math.floor(Math.random() * 65535)
+      .toString(16).toUpperCase().padStart(4, '0');
+    localStorage.setItem('userSignature', sig);
+  }
+  return sig;
+}
+
+// --- SPAM ---
 function checkSpam() {
-  const lastSent = localStorage.getItem('lastSentMessageTime');
-  if (!lastSent) return true;
-  const diff = Date.now() - parseInt(lastSent, 10);
-  return diff >= COOLDOWN_TIME;
+  const last = localStorage.getItem('lastSentMessageTime');
+  if (!last) return true;
+  return Date.now() - parseInt(last, 10) >= COOLDOWN_TIME;
 }
 
 function updateCooldownUI() {
-  const lastSent = localStorage.getItem('lastSentMessageTime');
-  if (!lastSent) return;
-  const diff = Date.now() - parseInt(lastSent, 10);
-  
+  const last = localStorage.getItem('lastSentMessageTime');
+  if (!last) return;
+
+  const diff = Date.now() - parseInt(last, 10);
   if (diff < COOLDOWN_TIME) {
     sendBtn.disabled = true;
-    sendBtn.classList.add('disabled-btn'); // CSS ile stil vereceğiz
-    if(spamWarning) spamWarning.style.display = "block";
-    
+    spamWarning.style.display = "block";
     setTimeout(() => {
       sendBtn.disabled = false;
-      sendBtn.classList.remove('disabled-btn');
-      if(spamWarning) spamWarning.style.display = "none";
+      spamWarning.style.display = "none";
     }, COOLDOWN_TIME - diff);
   }
 }
 
-// --- HTML OLUŞTURMA ---
-function renderMessage(data) {
-  const div = document.createElement('div');
-  div.className = 'msg-card'; // CSS dosyasındaki .blog-card stiline benzeteceğiz
-  
-  let dateStr = "Az önce";
-  if (data.timestamp) {
-    dateStr = new Date(data.timestamp).toLocaleString('tr-TR');
-  }
+// --- RENDER ---
+function renderMessage(data, key) {
+  if (document.getElementById(`msg-${key}`)) return;
 
-  const safeName = escapeHtml(data.user);
-  const safeText = escapeHtml(data.text);
+  const div = document.createElement('div');
+  div.className = 'msg-card';
+  div.id = `msg-${key}`;
+
+  const dateStr = data.timestamp
+    ? new Date(data.timestamp).toLocaleString('tr-TR')
+    : "Az önce";
 
   div.innerHTML = `
     <div class="msg-header">
-      <span class="msg-author">@${safeName}</span>
+      <div>
+        <span class="msg-author">@${escapeHtml(data.user)}</span>
+        <span class="msg-signature">${escapeHtml(data.signature)}</span>
+      </div>
       <span class="msg-time">${dateStr}</span>
     </div>
-    <p class="msg-text">${safeText}</p>
+    <p class="msg-text">${escapeHtml(data.text)}</p>
   `;
-  
-  // *** KRİTİK DEĞİŞİKLİK BURADA: ***
-  // appendChild yerine prepend kullanıyoruz.
-  // Böylece her gelen mesaj listenin EN BAŞINA ekleniyor.
-  msgListEl.prepend(div); 
+
+  msgListEl.prepend(div);
 }
 
 function escapeHtml(str) {
-  if (!str) return '';
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
-// --- MESAJLARI DİNLEME ---
+// --- DİNLE ---
 function listenMessages() {
-  msgListEl.innerHTML = ""; 
-  // limitToLast(50) son 50 mesajı getirir (eskiden yeniye doğru)
-  // Biz renderMessage içinde 'prepend' kullandığımız için 
-  // döngü bittiğinde en yeni mesaj en üstte kalacak.
-  const commentsRef = query(ref(db, DB_PATH), limitToLast(50));
-  
-  onChildAdded(commentsRef, (snapshot) => {
-    renderMessage(snapshot.val());
-  });
+  msgListEl.innerHTML = "";
+  const q = query(ref(db, DB_PATH), limitToLast(50));
+  onChildAdded(q, snap => renderMessage(snap.val(), snap.key));
 }
 
-// --- MESAJ GÖNDERME ---
+// --- GÖNDER ---
 function sendMessage() {
   const user = usernameEl.value.trim();
   const text = textEl.value.trim();
 
   if (!user || !text) {
-    alert("Lütfen isim ve mesaj alanını doldurun.");
+    alert("İsim ve mesaj boş olamaz.");
     return;
   }
 
@@ -123,47 +120,35 @@ function sendMessage() {
     return;
   }
 
-  const originalBtnText = sendBtn.innerText;
-  sendBtn.innerText = "Yollanıyor...";
-  sendBtn.disabled = true;
-
-  const newMessageRef = push(ref(db, DB_PATH));
-  const messageData = {
-    user: user,
-    text: text,
+  const msgRef = push(ref(db, DB_PATH));
+  set(msgRef, {
+    user,
+    text,
+    signature: getMySignature(),
     timestamp: serverTimestamp()
-  };
-
-  import("https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js").then(module => {
-     module.set(newMessageRef, messageData)
-      .then(() => {
-        textEl.value = ""; 
-        localStorage.setItem('lastSentMessageTime', Date.now());
-        updateCooldownUI();
-      })
-      .catch((err) => alert("Hata: " + err.message))
-      .finally(() => {
-        sendBtn.innerText = originalBtnText;
-        if (checkSpam()) sendBtn.disabled = false;
-      });
+  }).then(() => {
+    textEl.value = "";
+    localStorage.setItem('lastSentMessageTime', Date.now());
+    updateCooldownUI();
   });
 }
 
-// Olay Dinleyicileri
-if(sendBtn) sendBtn.addEventListener('click', sendMessage);
-if(textEl) {
-  textEl.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-  });
-}
+sendBtn.addEventListener('click', sendMessage);
+textEl.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   listenMessages();
   updateCooldownUI();
-  const savedName = localStorage.getItem('chatUsername');
-  if (savedName && usernameEl) usernameEl.value = savedName;
-  if(usernameEl) usernameEl.addEventListener('change', () => localStorage.setItem('chatUsername', usernameEl.value));
+
+  const saved = localStorage.getItem('chatUsername');
+  if (saved) usernameEl.value = saved;
+
+  usernameEl.addEventListener('change', () =>
+    localStorage.setItem('chatUsername', usernameEl.value)
+  );
 });

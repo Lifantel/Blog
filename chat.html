@@ -8,7 +8,7 @@
   <link rel="icon" href="favicon.png" type="image/png">
   
   <style>
-    /* NOIR TEMA UYUMU */
+    /* --- MEVCUT STİLLERİN AYNI KALIYOR --- */
     
     .chat-wrapper {
       width: 100%;
@@ -19,9 +19,8 @@
       gap: 20px;
     }
 
-    /* Input Alanı (Controls class'ına benzer stil) */
     .chat-input-area {
-      background: var(--card); /* #141414 */
+      background: var(--card); /* #141414 varsayımı */
       padding: 20px;
       border-radius: 14px;
       border: 1px solid transparent;
@@ -38,10 +37,9 @@
       margin-bottom: 12px;
     }
 
-    /* style.css'deki input stilleriyle aynı */
     #chat-username, #chat-text {
       background: #0f0f0f;
-      color: var(--text);
+      color: var(--text); /* var(--text) tanımlı olmalı, yoksa #fff */
       border: 1px solid #222;
       border-radius: 10px;
       padding: 12px;
@@ -60,7 +58,6 @@
       min-height: 80px;
     }
 
-    /* Buton (Refresh butonuna benzettik) */
     #chat-btn {
       padding: 10px 24px;
       border-radius: 10px;
@@ -77,7 +74,6 @@
       color: #000;
     }
 
-    /* Spam cezası sırasındaki buton hali */
     .disabled-btn {
       opacity: 0.5;
       cursor: not-allowed !important;
@@ -86,14 +82,12 @@
       background: transparent !important;
     }
 
-    /* Mesaj Listesi */
     #messages-list {
       display: flex;
-      flex-direction: column; /* Artık normal sıralama çünkü JS'de prepend yapıyoruz */
+      flex-direction: column; 
       gap: 16px;
     }
 
-    /* Mesaj Kartları (.blog-card stiline benzettik) */
     .msg-card {
       background: var(--card);
       padding: 16px;
@@ -104,10 +98,9 @@
     }
     
     .msg-card:hover {
-      border-color: #222; /* Hafif çerçeve belirginleşmesi */
+      border-color: #222; 
     }
 
-    /* Kartın soluna ince çizgi (Noir vurgusu) */
     .msg-card::before {
       content: "";
       position: absolute;
@@ -122,8 +115,9 @@
     .msg-header {
       display: flex;
       justify-content: space-between;
+      align-items: center; /* Butonları hizalamak için */
       margin-bottom: 8px;
-      padding-left: 10px; /* Çizgi payı */
+      padding-left: 10px; 
     }
 
     .msg-author {
@@ -132,16 +126,47 @@
       font-size: 0.95rem;
     }
 
+    /* YENİ: İmza Stili */
+    .msg-signature {
+      font-size: 0.75rem;
+      color: #666;
+      background: #222;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+      font-family: monospace;
+      letter-spacing: 1px;
+    }
+
     .msg-time {
       font-size: 0.8rem;
       color: var(--muted);
+      margin-left: auto; /* Sağa iter */
+      margin-right: 10px;
+    }
+
+    /* YENİ: Silme Butonu */
+    .delete-btn {
+      background: #3a1111;
+      color: #ff4d4d;
+      border: none;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: none; /* Varsayılan gizli */
+    }
+    
+    .delete-btn:hover {
+      background: #ff4d4d;
+      color: white;
     }
 
     .msg-text {
       color: #d1d1d1;
       line-height: 1.5;
       margin: 0;
-      padding-left: 10px; /* Çizgi payı */
+      padding-left: 10px;
       word-wrap: break-word;
     }
 
@@ -149,13 +174,23 @@
       color: var(--accent);
       font-size: 0.9rem;
       display: none;
-      margin-right: auto; /* Yazıyı sola, butonu sağa iter */
+      margin-right: auto;
     }
 
     @keyframes slideIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Footer Admin Link */
+    .admin-login-link {
+      font-size: 0.7rem;
+      color: #333;
+      text-decoration: none;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .admin-login-link:hover { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -170,7 +205,7 @@
         <li><a href="https://www.reddit.com/user/Lifantel" target="_blank" rel="noopener noreferrer">Reddit</a></li>
         <li><a href="https://github.com/Lifantel" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         <li><a href="https://sosyal.teknofest.app/@lifantell" target="_blank" rel="noopener noreferrer">NSosyal</a></li>
-        <li><a href="index.html" style="color: var(--accent);">🏠 Ana Sayfa</a></li>
+        <li><a href="index.html" style="color: var(--accent);">Ana Sayfa</a></li>
       </ul>
       <button id="close-menu" class="close-btn">&times;</button>
     </nav>
