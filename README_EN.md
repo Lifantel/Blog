@@ -178,5 +178,5 @@ Or open an Issue on GitHub.
 
 ---
 
-**Authors:** Mehmet Fatih GÜLTEKİN / Fikri Efe AKAR  
+**Authors:** Mehmet Fatih GÜLTEKİN
 **Version:** 3.0.0
