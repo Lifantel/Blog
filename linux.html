@@ -180,6 +180,58 @@
 
 </main>
 
+<!-- Günlük Butonu -->
+<button class="diary-fab" onclick="document.getElementById('diaryModal').classList.add('open')" title="Distro Günlüğüm">
+  📓
+</button>
+
+<!-- Günlük Modal -->
+<div class="diary-modal" id="diaryModal">
+  <div class="diary-box">
+    <button class="diary-close" onclick="document.getElementById('diaryModal').classList.remove('open')">✕</button>
+    <h2 class="diary-title">📓 Distro Günlüğüm</h2>
+    <p class="diary-subtitle">Kullandığım dağıtımların hikayesi</p>
+
+    <div class="diary-timeline">
+
+      <!-- Ubuntu -->
+      <div class="diary-entry">
+        <div class="diary-header">
+          <img src="https://cdn.simpleicons.org/ubuntu/E95420" alt="Ubuntu" class="diary-icon">
+          <div class="diary-info">
+            <span class="diary-name">Ubuntu</span>
+            <span class="diary-dates">
+              <span class="diary-date-badge start">▶ 16 Eki 2025</span>
+              <span class="diary-date-badge end">⏹ 20 Nis 2026</span>
+            </span>
+          </div>
+        </div>
+        <p class="diary-note">
+          Linux macerama Ubuntu ile başladım. GNOME masaüstü biraz ağır geldi ama topluluk desteği sayesinde her sorunu çözebildim. Sağlam bir başlangıç noktasıydı.
+        </p>
+      </div>
+
+      <!-- Fedora -->
+      <div class="diary-entry current">
+        <div class="diary-header">
+          <img src="https://cdn.simpleicons.org/fedora/51A2DA" alt="Fedora" class="diary-icon">
+          <div class="diary-info">
+            <span class="diary-name">Fedora <span class="diary-live-badge">● Aktif</span></span>
+            <span class="diary-dates">
+              <span class="diary-date-badge start">▶ 20 Nis 2026</span>
+              <span class="diary-date-badge ongoing">∞ Devam ediyor</span>
+            </span>
+          </div>
+        </div>
+        <p class="diary-note">
+          Ubuntu'dan geçişim bir anda oldu — Fedora'nın yeni teknolojileri ne kadar hızlı benimsediğini görünce geri dönmek istemedim. DNF paketi yönetimi temiz, sistem güncel, ve KDE burada çok daha pürüzsüz hissettiriyor.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <footer class="footer">
   <a href="https://github.com/Lifantel/Blog" target="_blank" rel="noopener noreferrer">© 2025 MIT</a>
 </footer>
