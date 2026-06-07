@@ -11,13 +11,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBnBF0q_61MYjQZGRRGhXWzXO51o5c3NFs",
-  authDomain: "blogsitem-1d304.firebaseapp.com",
-  databaseURL: "https://blogsitem-1d304-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "blogsitem-1d304",
-  storageBucket: "blogsitem-1d304.firebasestorage.app",
-  messagingSenderId: "967539925830",
-  appId: "1:967539925830:web:b7318a715fc3085d643b47"
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
 };
 
 const app = initializeApp(firebaseConfig);
