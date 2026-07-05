@@ -315,10 +315,17 @@
     </item>
 
     <item>
-      <title>Person of Interest: Yapay Zeka, Gözetim Toplumu ve Dijital Kader</title>
+      <title>Satrancın Tarihi: Çaturanga'dan Modern Çağa Strateji ve Zeka Sanatı</title>
       <link>https://www.mfgultekin.com/blog.html?id=80</link>
       <description>Kökenleri Hindistan'a dayanan satranç, savaş stratejilerinin bir simülasyonundan çıkıp medeniyetler arası bir köprü kurarak tüm dünyayı fetheden evrensel bir zeka oyununa nasıl dönüştü?</description>
       <pubDate>Wed, 24 Jun 2026 21:20:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Yapay Zeka ile Doğru Linux Dağıtımını Bulmak: DistroAI</title>
+      <link>https://www.mfgultekin.com/blog.html?id=81</link>
+      <description>Hangi Linux dağıtımını seçeceğinize karar veremiyor musunuz? PyTorch kullanarak geliştirilen ve 13 soruda size en uygun Linux sürümünü öneren açık kaynaklı DistroAI projesini keşfedin.</description>
+      <pubDate>Sun, 05 Jul 2026 19:00:00 +0300</pubDate>
     </item>
 
 
