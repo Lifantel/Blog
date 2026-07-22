@@ -566,3 +566,99 @@ main a {
   line-height: 1.6;
 }
 
+/* ==============================
+   DISTROAI POPUP
+   ============================== */
+
+.distroai-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+  padding: 20px;
+}
+
+.distroai-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.distroai-box {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 440px;
+  padding: 28px;
+  position: relative;
+  text-align: center;
+}
+
+.distroai-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color .2s;
+}
+
+.distroai-close:hover {
+  color: var(--accent);
+}
+
+.distroai-title {
+  margin: 0 0 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.distroai-text {
+  margin: 0 0 22px;
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.distroai-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.distroai-link {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background .2s ease, color .2s ease;
+}
+
+.distroai-link:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+.distroai-link.primary {
+  background: var(--accent);
+  color: #000;
+}
+
+.distroai-link.primary:hover {
+  background: #b91c1c;
+  border-color: #b91c1c;
+}
+
