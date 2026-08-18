@@ -1,12 +1,12 @@
 [Türkçe](README.md) | [English](README_EN.md)
 
-# 🌐 Blog Sitesi Ana Şablonu
+# Blog Sitesi Ana Şablonu
 
 Bu proje, statik yapıda çalışan modern bir **kişisel blog** veya **içerik sitesi** şablonudur. GitHub Pages veya benzeri statik barındırma servislerinde kolayca yayınlanabilir.
 
 ---
 
-## 🚀 Özellikler
+## Özellikler
 
 - **Tamamen statik yapı** (HTML, CSS, JS)
 - **JSON tabanlı içerik yönetimi** (`blogs.json`)
@@ -18,7 +18,7 @@ Bu proje, statik yapıda çalışan modern bir **kişisel blog** veya **içerik 
 
 ---
 
-## 📁 Proje Yapısı
+## Proje Yapısı
 
 ```
 Blog-main/
@@ -47,7 +47,7 @@ Blog-main/
 
 ---
 
-## ⚙️ Kurulum
+## Kurulum
 
 ### 1. Repoyu klonla
 ```bash
@@ -71,7 +71,7 @@ DNS kayıtlarında `CNAME` olarak `kullanici.github.io` hedefini göster.
 
 ---
 
-## 🧩 İçerik Yönetimi
+## İçerik Yönetimi
 
 Tüm yazılar `blogs.json` dosyasından yüklenir.
 
@@ -96,7 +96,7 @@ Sistem otomatik olarak listeye dahil eder.
 
 ---
 
-## 📰 RSS Beslemesi
+## RSS Beslemesi
 
 `rss.xml` dosyası manuel veya script ile güncellenebilir.  
 RSS formatı, okuyucuların yeni içerikleri otomatik takip etmesini sağlar.
@@ -106,7 +106,7 @@ Güncellemek istiyorsanız '<'item'>' den başlayıp '<'item'>' a kadar kopyalay
 
 ---
 
-## 🔧 Örnek
+## Örnek
 
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
@@ -130,7 +130,7 @@ Güncellemek istiyorsanız '<'item'>' den başlayıp '<'item'>' a kadar kopyalay
 
 ---
 
-## 🧠 Geliştirici Notları
+## Geliştirici Notları
 
 - **index.html**: Blog listesi ve öne çıkan yazılar.
 - **blog.html**: Seçilen yazının detaylarını `id` parametresiyle gösterir.
@@ -140,7 +140,7 @@ Güncellemek istiyorsanız '<'item'>' den başlayıp '<'item'>' a kadar kopyalay
 
 ---
 
-## 🧱 Özelleştirme
+## Özelleştirme
 
 - Renk paletini `style.css` üzerinden değiştirebilirsin.
 - Yazı sayısını veya filtreleme özelliklerini `script.js` içinde ayarlayabilirsin.
@@ -148,7 +148,7 @@ Güncellemek istiyorsanız '<'item'>' den başlayıp '<'item'>' a kadar kopyalay
 
 ---
 
-## ⚠️ Hata Giderme
+## Hata Giderme
 
 | Sorun | Olası Sebep | Çözüm |
 |-------|--------------|--------|
@@ -158,14 +158,14 @@ Güncellemek istiyorsanız '<'item'>' den başlayıp '<'item'>' a kadar kopyalay
 
 ---
 
-## 🪪 Lisans
+## Lisans
 
 Bu proje **MIT Lisansı** altında sunulmuştur.  
 Dilediğiniz gibi kullanabilir, düzenleyebilir ve paylaşabilirsiniz.
 
 ---
 
-## ✨ Katkıda Bulunma
+## Katkıda Bulunma
 
 1. Fork oluştur  
 2. Yeni branch aç (`feature/yeni-özellik`)  
@@ -174,7 +174,7 @@ Dilediğiniz gibi kullanabilir, düzenleyebilir ve paylaşabilirsiniz.
 
 ---
 
-## 📬 İletişim
+## İletişim
 
 Sorular için: `mail@mfgultekin.com`  
 veya GitHub Issues sekmesinden bildirim yapabilirsiniz.
@@ -182,4 +182,4 @@ veya GitHub Issues sekmesinden bildirim yapabilirsiniz.
 ---
 
 **Hazırlayan:** Mehmet Fatih GÜLTEKİN
-**Sürüm:** 3.0.0
+**Sürüm:** 3.1.4
