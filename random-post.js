@@ -4,7 +4,7 @@
 
 (function () {
   const btn = document.getElementById('random-post-btn');
-  if (!btn) return; // buton sayfada yoksa hiçbir şey yapma
+  if (!btn) return; 
 
   async function fetchBlogs() {
     const url = 'blogs.json?v=' + Date.now();
@@ -22,13 +22,10 @@
   async function goToRandomPost() {
     const originalText = btn.textContent;
     btn.disabled = true;
-    btn.textContent = '🎲 Seçiliyor...';
+    btn.textContent = 'Seçiliyor...';
 
     try {
       const blogs = await fetchBlogs();
-
-      // Şu an bir blog detay sayfasındaysak, aynı yazı tekrar
-      // gelmesin diye elimizden geldiğince farklı bir tanesini seçelim.
       const params = new URLSearchParams(window.location.search);
       const currentId = params.get('id');
 
