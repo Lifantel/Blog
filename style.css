@@ -690,3 +690,28 @@ main a {
   color:var(--accent);
 }
 
+.menu-btn-inline{
+  background:none;
+  border:none;
+  color:var(--text);
+  font-size:1rem;
+  padding:0;
+  cursor:pointer;
+  text-align:left;
+  font-family:inherit;
+}
+
+#random-post-btn{
+  animation: blink-red 1.2s infinite;
+}
+
+@keyframes blink-red {
+  0%, 100% { color: var(--text); }
+  50% { color: var(--accent); }
+}
+
+#random-post-btn:hover{
+  animation: none;
+  color: var(--accent);
+}
+
