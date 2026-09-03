@@ -676,3 +676,17 @@ main a {
   border-color: #b91c1c;
 }
 
+.menu-btn-inline{
+  background:none;
+  border:none;
+  color:var(--text);
+  font-size:1rem;
+  padding:0;
+  cursor:pointer;
+  text-align:left;
+  font-family:inherit;
+}
+.menu-btn-inline:hover{
+  color:var(--accent);
+}
+
