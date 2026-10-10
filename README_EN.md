@@ -299,4 +299,4 @@ Since your content sits in a plain JSON file, exporting and converting it is eas
 ---
 
 **Author:** Mehmet Fatih GÜLTEKİN
-**Version:** 3.1.4
+**Version:** 4.0.0
