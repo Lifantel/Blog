@@ -299,4 +299,4 @@ Evet. Netlify, Cloudflare Pages, Vercel veya kendi sunucun gibi herhangi bir sta
 ---
 
 **Hazırlayan:** Mehmet Fatih GÜLTEKİN
-**Sürüm:** 3.1.4
+**Sürüm:** 4.0.0
